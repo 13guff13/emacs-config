@@ -1,0 +1,35 @@
+(require 'package)
+(add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/")
+   t)
+(package-initialize)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
+(require 'emmet-mode)
+(require 'google-translate)
+(require 'google-translate-smooth-ui)
+(global-set-key "\C-ct" 'google-translate-smooth-translate)
+
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+
+
+;;path to load plugins.
+(add-to-list 'load-path "~/.emacs.d/")
+
+
+(require 'linum)
+(setq linum-format "%d " )
+(global-linum-mode 1) 
+
+
+;;(defun my/insert-line-before ()
+;; (interactive)
+;;(save-excursion
+;;  (move-beginning-of-line 1)
+;;  (newline)))

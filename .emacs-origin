@@ -7,11 +7,46 @@
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (package-initialize)
 
+;; initialize global modes.
+;;(show-paren-mode)
 
+;; set global variables.
+(setq make-backup-files nil)
+(setq auto-save-file-name nil)
+(setq auto-save-default nil)
+
+(keyboard-translate ?\C-f ?\C-l)
+(keyboard-translate ?\C-l ?\C-f)
+(keyboard-translate ?\C-b ?\C-j)
+(keyboard-translate ?\C-j ?\C-b)
+(keyboard-translate ?\C-p ?\C-i)
+(keyboard-translate ?\C-i ?\C-p)
+(keyboard-translate ?\C-n ?\C-k)
+(keyboard-translate ?\C-k ?\C-n)
+
+;;(keyboard-translate ?\M-f ?\M-l)
+;;(keyboard-translate ?\M-l ?\M-f)
+;;(keyboard-translate ?\M-b ?\M-j)
+;;(keyboard-translate ?\M-j ?\M-b)
+;;(keyboard-translate ?\M-p ?\M-i)
+;;(keyboard-translate ?\M-i ?\M-p)
+;;(keyboard-translate ?\M-n ?\M-k)
+;;(keyboard-translate ?\M-k ?\M-n)
+
+
+
+
+
+(require 'sr-speedbar)
+(global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
 (require 'emmet-mode)
 (require 'google-translate)
 (require 'google-translate-smooth-ui)
-(global-set-key "\C-ct" 'google-translate-smooth-translate)
+(setq google-translate-default-source-language "English")
+(setq google-translate-default-target-language "Russian")
+(global-set-key (kbd "C-t") 'google-translate-at-point)
+;;(global-set-key (kbd "C-t") 'google-translate-query-translate)
+
 
 (require 'ido)
 (ido-mode t)
@@ -33,3 +68,16 @@
 ;;(save-excursion
 ;;  (move-beginning-of-line 1)
 ;;  (newline)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(google-translate-default-source-language "en")
+ '(google-translate-default-target-language "ru"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

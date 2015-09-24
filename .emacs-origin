@@ -1,3 +1,10 @@
+;; custome function definitions.
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive)
+      (revert-buffer t t))
+
+
 (require 'package)
 (add-to-list
    'package-archives
@@ -10,19 +17,26 @@
 ;; initialize global modes.
 ;;(show-paren-mode)
 
+(global-diff-hl-mode)
+
+
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
 ;; set global variables.
 (setq make-backup-files nil)
 (setq auto-save-file-name nil)
 (setq auto-save-default nil)
 
-(keyboard-translate ?\C-f ?\C-l)
-(keyboard-translate ?\C-l ?\C-f)
-(keyboard-translate ?\C-b ?\C-j)
-(keyboard-translate ?\C-j ?\C-b)
-(keyboard-translate ?\C-p ?\C-i)
-(keyboard-translate ?\C-i ?\C-p)
-(keyboard-translate ?\C-n ?\C-k)
-(keyboard-translate ?\C-k ?\C-n)
+(define-key global-map [f5] 'toggle-truncate-lines)
+;;(keyboard-translate ?\C-f ?\C-l)
+
+;;(keyboard-translate ?\C-l ?\C-f)
+;;(keyboard-translate ?\C-b ?\C-j)
+;;(keyboard-translate ?\C-j ?\C-b)
+;;(keyboard-translate ?\C-p ?\C-i)
+;;(keyboard-translate ?\C-i ?\C-p)
+;;(keyboard-translate ?\C-n ?\C-k)
+;;(keyboard-translate ?\C-k ?\C-n)
 
 ;;(keyboard-translate ?\M-f ?\M-l)
 ;;(keyboard-translate ?\M-l ?\M-f)
@@ -34,9 +48,36 @@
 ;;(keyboard-translate ?\M-k ?\M-n)
 
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+  '((dot . t)))
+
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
+
+(require 'auto-complete-config)
+(setq ac-directory-directories "/home/guff/.emacs.d/elpa/auto-complete-1.4/dict")
+(setq-default ac-sources
+	      '(ac-source-abbrev ac-source-dictionary  ac-source-words-in-same-mode-buffers))
+(ac-config-default)
+
+(add-to-list 'load-path "/home/guff/.emacs.d/elpa/ag.el-master")
+(require 'ag)
 
 
-
+(require 'projectile)
+(projectile-global-mode)
+(add-to-list 'load-path "~/.emacs.d/elpa/helm-projectile-0.10.0/")
+(require 'helm-config)
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs
+      '("/home/guff/.emacs.d/elpa/yasnippet-0.8.0/snippets"                 ;; personal snippets
+	"/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+	"/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+	"/path/to/yasnippet/snippets"         ;; the default collection
+	        ))
 (require 'sr-speedbar)
 (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
 (require 'emmet-mode)
@@ -45,23 +86,27 @@
 (setq google-translate-default-source-language "English")
 (setq google-translate-default-target-language "Russian")
 (global-set-key (kbd "C-t") 'google-translate-at-point)
+(global-set-key (kbd "C-M-r") 'revert-buffer-no-confirm)
+(global-set-key (kbd "C-x G") 'magit-status)
 ;;(global-set-key (kbd "C-t") 'google-translate-query-translate)
 
 
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
+;;(require 'ido)
+;;(ido-mode t)
+;;(setq ido-enable-flex-matching t)
 
 
 
 ;;path to load plugins.
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "/home/guff/.emacs.d/elpa/")
 
+(smart-tabs-insinuate 'javascript 'nxml)
+
+(require 'whitespace)
 
 (require 'linum)
 (setq linum-format "%d " )
 (global-linum-mode 1) 
-
 
 ;;(defun my/insert-line-before ()
 ;; (interactive)
@@ -81,3 +126,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)

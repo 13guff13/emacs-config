@@ -1,10 +1,12 @@
-;; custome function definitions.
+	;; custome function definitions.
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive)
       (revert-buffer t t))
 
-
+(require 'package)
+(add-to-list 'package-archives
+	          '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (require 'package)
 (add-to-list
    'package-archives
@@ -19,6 +21,17 @@
 
 (global-diff-hl-mode)
 
+
+(autoload 'moz-minor-mode "moz.el" "Mozilla Minor and Inferior Mozilla Modes" t)
+(add-hook 'javascript-mode-hook 'javascript-custom-setup)
+(defun javascript-custom-setup ()
+  (moz-minor-mode 1))
+(defun moz-send-string (&optional s)
+  (interactive)
+  (comint-send-string (inferior-moz-process) (or s (read-string "repl> "))))
+(defun moz-page-reload ()
+  (interactive)
+  (moz-send-string "content.location.reload();"))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 

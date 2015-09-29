@@ -1,0 +1,13 @@
+| function              |
+| toggle-truncate-lines |
+| hs-toggle-hiding      |
+| dabbrev-expand        |
+| visit-tags-table      |
+|                       |
+
+| package    |
+| projectile |
+| yasnippet  |
+| speedbar   |
+|            |
+|            |

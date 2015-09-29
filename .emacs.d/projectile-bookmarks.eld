@@ -1,0 +1,1 @@
+("~/tmp/emacs_learn/" "~/elama/elama/" "~/Downloads/emacs-24.5/")

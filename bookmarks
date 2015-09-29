@@ -1,0 +1,20 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("global_test"
+ (filename . "~/tmp/emacs_learn/test-fiel")
+ (front-context-string . "global\n\nsettlers")
+ (rear-context-string . "hese pahrases.\n\n")
+ (position . 35))
+("jopa_2"
+ (filename . "~/tmp/emacs_learn/test.js")
+ (front-context-string)
+ (rear-context-string . " is somthing');\n")
+ (position . 73))
+("jopa_1"
+ (filename . "~/tmp/emacs_learn/test.js")
+ (front-context-string . "    var a = 23;\n")
+ (rear-context-string . "ction jopa () {\n")
+ (position . 20))
+)
